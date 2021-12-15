@@ -12,6 +12,7 @@ class CursosEdit extends Component
     use WithFileUploads;
     public Curso $curso;
     public $foto;
+    
     public function render()
     {
         return view('livewire.cursos.cursos-edit');

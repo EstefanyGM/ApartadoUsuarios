@@ -1,6 +1,7 @@
 <div>
     <div class="mx-auto card" style="width: 18rem;">
-        <img style="width:180px;" src="{{Storage::disk('public')->url($curso->foto!=null ? $curso->foto : 'images/cursos/default.png')}}" class="card-img-top mx-auto mt-4" alt="...">
+        <img style="width:180px;" src="{{Storage::disk('public')->url($curso->foto!=null ?
+        $curso->foto : 'images/cursos/default.png')}}" class="card-img-top mx-auto mt-4" alt="...">
         <div class="text-center card-body">
             <h5 class="card-title">{{ $curso->curso }}</h5>
             <span class="card-text">Categoria: {{ $curso->categoria }}</span><br>

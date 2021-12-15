@@ -12,7 +12,7 @@
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
-
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @livewireStyles
 </head>
 
@@ -20,13 +20,18 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-dark">
         <div class="container-fluid">
-            <a class="text-info navbar-brand" href="#">IDGS 9-2</a>
+            @if (Auth::check())
+            <a class="text-info navbar-brand" href="#"> <img style ="border-radius: 15px; width:35px;
+            height:35px;"src = "{{Storage::disk('public')->url(Auth::user()->foto ? Auth::user()->foto : 'images/usuario/default.png')}}">
+            {{Auth::user()->nombre_usuario}}</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
+                @endif
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                @if (Auth::check())
                 <ul class="mb-2 navbar-nav me-auto mb-lg-0">
                     <li class="nav-item">
                         <a class="text-white nav-link" href="{{route('cursos.index')}}">Cursos</a>
@@ -34,9 +39,15 @@
                     <li class="nav-item">
                         <a class="text-white nav-link" href="{{route('usuario.index')}}">Usuarios</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="text-white nav-link" href="{{route('ventas.index')}}">ventas</a>
+                    </li>
 
+                    <div style="margin-left: 750px">
+                    @livewire('login.logout')
+                    </div>
                 </ul>
-
+                @endif
             </div>
         </div>
     </nav>
@@ -47,6 +58,16 @@
 
 
     @livewireScripts
+
+    <script>
+        livewire.on('alerta', mensaje=>{
+            Swal.fire({
+                icon: 'error',
+                title: 'Ocurrior un error',
+                text: mensaje
+            })
+        });
+    </script>
 </body>
 
 </html>

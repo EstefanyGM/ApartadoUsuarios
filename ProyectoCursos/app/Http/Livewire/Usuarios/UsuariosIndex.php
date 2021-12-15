@@ -17,7 +17,7 @@ class UsuariosIndex extends Component
 
         $usuarios = ($this->cargado == true) ? Usuario::where('nombre_usuario', 'LIKE', '%' . $this->search . '%')
             ->orwhere('email', 'LIKE', '%' . $this->search . '%')
-            ->orwhere('password', 'LIKE', '%' . $this->search . '%')
+            ->orwhere('id', 'LIKE', '%' . $this->search . '%')
             ->paginate(5) : [];
         return view('livewire.usuarios.usuarios-index', compact('usuarios'));
     }
